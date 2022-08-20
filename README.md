@@ -3,6 +3,6 @@ This is a final project SRE BootCamp.
 
 # Squad 3 Team
 - Cesar
-- Thiago de Andrade - <img src="{[BadgeURLHere](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)}" />
+- Thiago de Andrade - 
 - Fabiano
 - Claudia
