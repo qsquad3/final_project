@@ -23,7 +23,7 @@ services:
       image: postgres:10
       volumes:
          - postgres_data:/var/lib/postgresql/data
-         - ./resource/create_database.sql:/docker-entrypoint-initdb.d/database.sql
+         - ./app/resource/create_database.sql:/docker-entrypoint-initdb.d/database.sql
       ports:
          - "5432:5432"
       environment:
