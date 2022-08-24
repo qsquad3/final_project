@@ -1,18 +1,18 @@
 variable "accesskey" {
  description = "AWS Access Key"
- default = "AKIAXOTEEX6FFAX3VZEC"
+ default = "SUA-CHAVE-AWS"
  type = string
 }
 
 variable "secretkey" {
  description = "AWS Secret Key"
- default = "rktQJJfARnz98bVoqq859FTMKfDWUSKPkE7Tt7f9"
+ default = "SUA-SECRET-AWS"
  type = string
 }
 
 variable "ssh_keypair" {
  description = "SSH keypair to use for EC2 instance"
- default = "quode_lab"
+ default = "SUA-CHAVE-SSH"
  type = string
 }
 
@@ -24,7 +24,7 @@ variable "region" {
 
 variable "instancia" {
     description = "Tipo Instancia"
-    default = "t2.micro"
+    default = "t3.medium"
     type = string
 }
 variable "vpc" {
