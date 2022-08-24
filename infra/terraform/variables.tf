@@ -1,12 +1,12 @@
 variable "accesskey" {
  description = "AWS Access Key"
- default = "AKIAxXXXXXXXXXXXXXXXXX
+ default = "AKIAXOTEEX6FFAX3VZEC"
  type = string
 }
 
 variable "secretkey" {
  description = "AWS Secret Key"
- default = "rktQJJfAXXXXXXXXXXXXXXXXXXX7Tt7f9"
+ default = "rktQJJfARnz98bVoqq859FTMKfDWUSKPkE7Tt7f9"
  type = string
 }
 
@@ -20,4 +20,43 @@ variable "region" {
  description = "AWS region"
  default = "us-east-1"
  type = string
+}
+
+variable "instancia" {
+    description = "Tipo Instancia"
+    default = "t2.micro"
+    type = string
+}
+variable "vpc" {
+    type = string
+    default = "10.0.0.0/16"
+}
+
+variable "pri-subnet" {
+    type = string
+    default = "10.0.1.0/24"
+}
+variable "dev-subnet" {
+    type = string
+    default = "10.0.2.0/24"
+}
+variable "pub-subnet" {
+    type = string
+    default = "10.0.3.0/24"
+}
+variable "k8smaster-nic" {
+    type = string
+    default = "10.0.3.11"
+}
+variable "k8sworker1-nic" {
+    type = string
+    default = "10.0.3.12"
+}
+variable "k8sworker2-nic" {
+    type = string
+    default = "10.0.3.13"
+}
+variable "docker-nic" {
+    type = string
+    default = "10.0.3.14"
 }

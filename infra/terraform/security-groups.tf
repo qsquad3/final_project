@@ -1,7 +1,7 @@
 resource "aws_security_group" "default-sg" {
    name        = "default-sg"
    description = "Default Security Group"
-   #vpc_id      = aws_vpc.prod-vpc.id
+   vpc_id      = aws_vpc.vpc.id
 
    ingress {
      description = "HTTPS"
@@ -23,6 +23,22 @@ resource "aws_security_group" "default-sg" {
      to_port     = 22
      protocol    = "tcp"
      cidr_blocks = ["0.0.0.0/0"]
+   }
+
+   ingress {
+     description = "6443"
+     from_port   = 6443
+     to_port     = 6443
+     protocol    = "tcp"
+     cidr_blocks = ["10.0.0.0/16"]
+   }
+
+   ingress {
+     description = "ping"
+     from_port = 8
+     to_port = 0
+     protocol = "icmp"
+     cidr_blocks = ["10.0.0.0/16"]
    }
 
    egress {
