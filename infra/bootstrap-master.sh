@@ -74,7 +74,9 @@ sudo apt-get install helm
 
 sudo helm repo add nginx-stable https://helm.nginx.com/stable
 sudo helm repo update
-sudohelm install ingress-nginx nginx-stable/nginx-ingress
+sudo helm install ingress-nginx nginx-stable/nginx-ingress
+
+
 
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt

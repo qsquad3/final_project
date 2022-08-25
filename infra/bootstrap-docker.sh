@@ -37,12 +37,25 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 # IMAGES and Containers
-# NGINX (Example)
 sudo mkdir /docker
 cd /docker
 sudo git clone https://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@github.com/qsquad3/docker-files.git
-cd docker-files/jenkins
+
+# JENKINS 
+cd /docker/docker-files/jenkins
 sudo docker-compose up -d
+
+# PGSQL
+cd /docker/docker-files/pgsql
+sudo docker-compose up -d
+
+# APP (buid image)
+cd /docker/docker-files/app
+sudo docker login -u qsquad3 -p dckr_pat_c6BWxdwtDLByUnP8f8JxD76SxWU
+sudo docker build -t app .
+sudo dockger tag app qsquad3/app
+sudo docker push qsquad3/app
+
 
 
 # somente pra saber se chegou até o final
