@@ -8,6 +8,18 @@ This is a final project SRE BootCamp.
 - Claudia Jugue [<p align="left"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></p>](https://www.linkedin.com/in/claudia-jugue/)
 - Gabriel Mariusso [<p align="left"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></p>](https://www.linkedin.com/in/gabriel-mariusso/)
 
+## Infraestrutura Kubernetes
+
+A estrutura compõe-se de 3 hosts, sendo 1 MASTER e 2 WORKERS.
+A implantação da estrutura é feita via Terraform, configurando automaticamente o host MASTER e efetuando JOIN dos dois hosts WORKERS.
+Nesta estrutura será armazenado a aplicação Python.
+
+## Infraestrutura Docker
+
+A estrutura compõe-se de 1 host, sendo Docker Server.
+Nesta estrutura estamos subindo as ferramentas de modo automatizado, sendo elas:
+- Jenkins
+- ...
 ## Aplicação Python
 
 Diretório da aplicação: /app
