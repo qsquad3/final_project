@@ -76,7 +76,13 @@ sudo helm repo add nginx-stable https://helm.nginx.com/stable
 sudo helm repo update
 sudo helm install ingress-nginx nginx-stable/nginx-ingress
 
-
+# Deploy
+sudo mkdir /deploys
+cd /deploys
+sudo git clone https://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@github.com/qsquad3/docker-files.git
+cd docker-files/kubernetes
+sudo kubectl apply -f app-ingress.yaml
+sudo kubectl apply -f app-deploy.yaml
 
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
