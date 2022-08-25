@@ -11,24 +11,43 @@ services:
       ports:
          - 80:8000
       environment:
-         - DB_HOST=postgres-db
-         - DB_USER=myuser
-         - DB_PASSWD=mypass
+         - DB_HOST=host
+         - DB_NAME=postgres
+         - DB_USER=user
+         - DB_PASSWD=password
       depends_on:
          - postgres-db
+      networks:
+         - lan
 
    postgres-db:
-      container_name: "postgres"
+      container_name: "host"
       restart: always
       image: postgres:10
       volumes:
-         - postgres_data:/var/lib/postgresql/data
+         - postgres_data2:/var/lib/postgresql/data
          - ./app/resource/create_database.sql:/docker-entrypoint-initdb.d/database.sql
       ports:
          - "5432:5432"
       environment:
-         - POSTGRES_USER=myuser
-         - POSTGRES_PASSWORD=mypass
+         - POSTGRES_USER=user
+         - POSTGRES_PASSWORD=password
+      # command: bash -c "psql -h localhost -U user -d postgres -a -f /docker-entrypoint-initdb.d/database.sql"
+      networks:
+         - lan
+
+   adminer:
+      image: adminer
+      restart: always
+      ports:
+         - 8080:8080
+      networks:
+         - lan
 
 volumes:
-   postgres_data:
+   postgres_data2:
+
+
+networks:
+   lan:
+      driver: bridge

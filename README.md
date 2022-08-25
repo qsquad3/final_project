@@ -37,3 +37,8 @@ database = os.getenv("DB_NAME")
 user = os.getenv("DB_USER")
 
 password = os.getenv("DB_PASSWD")
+
+
+Comandos:
+
+psql -d postgres -U user -W
