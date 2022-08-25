@@ -46,3 +46,6 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 sleep 90
 sudo curl http://10.0.3.11/join.txt | bash
+
+# somente pra saber se chegou até o final
+echo "ok" > /tmp/ok.txt
