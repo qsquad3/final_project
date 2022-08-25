@@ -13,6 +13,7 @@ This is a final project SRE BootCamp.
 A estrutura compõe-se de 3 hosts, sendo 1 MASTER e 2 WORKERS.
 A implantação da estrutura é feita via Terraform, configurando automaticamente o host MASTER e efetuando JOIN dos dois hosts WORKERS.
 Nesta estrutura será armazenado a aplicação Python.
+
 ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
 
 ## Infraestrutura Docker
