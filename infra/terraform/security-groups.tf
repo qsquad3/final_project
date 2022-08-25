@@ -33,9 +33,16 @@ resource "aws_security_group" "default-sg" {
    }
 
    ingress {
-     description = "6443"
+     description = "K8s"
      from_port   = 6443
      to_port     = 6443
+     protocol    = "tcp"
+     cidr_blocks = ["10.0.0.0/16"]
+   }
+   ingress {
+     description = "PGSQL-INT"
+     from_port   = 5432
+     to_port     = 5432
      protocol    = "tcp"
      cidr_blocks = ["10.0.0.0/16"]
    }
