@@ -4,6 +4,7 @@ resource "aws_instance" "k8master" {
    availability_zone = "us-east-1a"
    key_name          = var.ssh_keypair
    user_data = "${file("../bootstrap-master.sh")}"
+   depends_on = [aws_lb.LB]
    network_interface {
      device_index         = 0
      network_interface_id = aws_network_interface.k8s-master-nic.id

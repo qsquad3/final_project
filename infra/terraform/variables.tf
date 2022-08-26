@@ -16,6 +16,12 @@ variable "ssh_keypair" {
  type = string
 }
 
+variable "bucket-s3" {
+    description = "Bucket S3 para Terraform state"
+    default = "SEU BUCKET S3"
+    type = string
+}
+
 variable "region" {
  description = "AWS region"
  default = "us-east-1"

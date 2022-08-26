@@ -11,6 +11,13 @@ resource "aws_security_group" "default-sg" {
      cidr_blocks = ["0.0.0.0/0"]
    }
    ingress {
+     description = "HTTP-APP"
+     from_port   = 8000
+     to_port     = 8001
+     protocol    = "tcp"
+     cidr_blocks = ["0.0.0.0/0"]
+   }
+   ingress {
      description = "HTTP"
      from_port   = 80
      to_port     = 80
@@ -37,6 +44,13 @@ resource "aws_security_group" "default-sg" {
      from_port   = 6443
      to_port     = 6443
      protocol    = "tcp"
+     cidr_blocks = ["10.0.0.0/16"]
+   }
+   ingress {
+     description = "K8s2"
+     from_port   = 0
+     to_port     = 0
+     protocol    = "-1"
      cidr_blocks = ["10.0.0.0/16"]
    }
    ingress {

@@ -64,7 +64,7 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 
 cd /tmp
 curl https://docs.projectcalico.org/manifests/calico.yaml -O
-sudo kubectl apply -f /tmp/calico.yaml
+#sudo kubectl apply -f /tmp/calico.yaml
 
 curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
 sudo apt-get install apt-transport-https --yes
@@ -81,8 +81,9 @@ sudo mkdir /deploys
 cd /deploys
 sudo git clone https://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@github.com/qsquad3/docker-files.git
 cd docker-files/kubernetes
-sudo kubectl apply -f app-ingress.yaml
 sudo kubectl apply -f app-deploy.yaml
+sudo kubectl apply -f app-service.yaml
+
 
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
