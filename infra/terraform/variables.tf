@@ -15,13 +15,6 @@ variable "ssh_keypair" {
  default = "SUA-CHAVE-SSH"
  type = string
 }
-
-variable "bucket-s3" {
-    description = "Bucket S3 para Terraform state"
-    default = "SEU BUCKET S3"
-    type = string
-}
-
 variable "region" {
  description = "AWS region"
  default = "us-east-1"
