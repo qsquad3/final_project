@@ -38,6 +38,13 @@ resource "aws_security_group" "default-sg" {
      protocol    = "tcp"
      cidr_blocks = ["0.0.0.0/0"]
    }
+   ingress {
+     description = "K8s-Dash"
+     from_port   = 8001
+     to_port     = 8001
+     protocol    = "tcp"
+     cidr_blocks = ["0.0.0.0/0"]
+   }
 
    ingress {
      description = "K8s"
