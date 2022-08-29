@@ -62,6 +62,9 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
+sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.1/aio/deploy/recommended.yaml
+sudo kubectl proxy
+
 cd /tmp
 curl https://docs.projectcalico.org/manifests/calico.yaml -O
 #sudo kubectl apply -f /tmp/calico.yaml
