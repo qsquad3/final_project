@@ -27,6 +27,15 @@ resource "aws_subnet" "pub-subnet" {
     Name = "PubSubnet"
   }
 }
+resource "aws_subnet" "pub-subnet2" {
+  vpc_id     = aws_vpc.vpc.id
+  cidr_block = var.pub-subnet2
+  availability_zone = "us-east-1b"
+
+  tags = {
+    Name = "PubSubnet2"
+  }
+}
 
 # Subnet Developer
 resource "aws_subnet" "dev-subnet" {
@@ -65,6 +74,10 @@ resource "aws_route_table" "rtpub" {
 # Associate subnet with Route Table
  resource "aws_route_table_association" "pub" {
    subnet_id      = aws_subnet.pub-subnet.id
+   route_table_id = aws_route_table.rtpub.id
+ }
+ resource "aws_route_table_association" "pub2" {
+   subnet_id      = aws_subnet.pub-subnet2.id
    route_table_id = aws_route_table.rtpub.id
  }
 

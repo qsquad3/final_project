@@ -1,6 +1,6 @@
 variable "accesskey" {
  description = "AWS Access Key"
- default = "SUA-CHAVE-AWS"
+ default = "SUA-ACCESS-KEY"
  type = string
 }
 
@@ -42,6 +42,10 @@ variable "dev-subnet" {
 variable "pub-subnet" {
     type = string
     default = "10.0.3.0/24"
+}
+variable "pub-subnet2" {
+    type = string
+    default = "10.0.4.0/24"
 }
 variable "k8smaster-nic" {
     type = string

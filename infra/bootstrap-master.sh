@@ -46,7 +46,7 @@ sudo echo "10.0.3.12   k8worker1" >> /etc/hosts
 sudo echo "10.0.3.13   k8worker2" >> /etc/hosts
 
 sudo service apache2 start
-sudo su -c "sudo kubeadm init --pod-network-cidr=10.0.0.0/16 --ignore-preflight-errors=all" root
+sudo su -c "sudo kubeadm init --pod-network-cidr=10.0.0.0/16 --service-cidr=10.0.0.0/16" root
 
 sudo su -c "mkdir -p /root/.kube" root
 sudo su -c "sudo cp -i /etc/kubernetes/admin.conf /root/.kube/config" root
@@ -55,38 +55,40 @@ sudo su -c "export KUBECONFIG=/etc/kubernetes/admin.conf" root
 
 sudo kubeadm token create --print-join-command > /var/www/html/join.txt
 
-sudo kubeadm init --pod-network-cidr=10.0.0.0/16 --ignore-preflight-errors=all
+sudo kubeadm init --pod-network-cidr=10.0.0.0/16 --service-cidr=10.0.0.0/16
 
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
-sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.1/aio/deploy/recommended.yaml
-sudo kubectl proxy
-
-cd /tmp
-curl https://docs.projectcalico.org/manifests/calico.yaml -O
-#sudo kubectl apply -f /tmp/calico.yaml
-
+# Install Helm
 curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
 sudo apt-get install apt-transport-https --yes
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
 sudo apt-get update
 sudo apt-get install helm
 
-sudo helm repo add nginx-stable https://helm.nginx.com/stable
-sudo helm repo update
-sudo helm install ingress-nginx nginx-stable/nginx-ingress
+# Add kubernetes-dashboard repository
+sudo helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+sudo helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard
 
-# Deploy
+# Install nginx-ingress
+#sudo helm repo add nginx-stable https://helm.nginx.com/stable
+#sudo helm repo update
+#sudo helm install ingress-nginx nginx-stable/nginx-ingress
+
+# Deploy kubernetes files
 sudo mkdir /deploys
 cd /deploys
 sudo git clone https://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@github.com/qsquad3/docker-files.git
 cd docker-files/kubernetes
-sudo kubectl apply -f app-deploy.yaml
-sudo kubectl apply -f app-service.yaml
+#sudo kubectl apply -f app-deploy.yaml
+#sudo kubectl apply -f app-service.yaml
 
-
+# Install Calico cni
+cd /tmp
+curl https://docs.projectcalico.org/manifests/calico.yaml -O
+sudo kubectl apply -f /tmp/calico.yaml
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
