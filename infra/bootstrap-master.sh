@@ -83,7 +83,6 @@ cd docker-files/kubernetes
 #sudo kubectl apply -f app-deploy.yaml
 #sudo kubectl apply -f app-service.yaml
 
-
 # Install Calico cni
 cd /tmp
 sudo wget https://docs.projectcalico.org/manifests/custom-resources.yaml
@@ -98,6 +97,14 @@ sudo kubectl taint nodes --all node-role.kubernetes.io/control-plane- node-role.
 sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
 # kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 8443:443 --address 0.0.0.0
 
+# Install Tanka
+sudo curl -fSL -o "/usr/local/bin/tk" "https://github.com/grafana/tanka/releases/download/v0.7.1/tk-linux-amd64"
+sudo chmod a+x "/usr/local/bin/tk"
+
+# Install TNS
+sudo git clone https://github.com/grafana/tns.git
+cd /tns
+sudo ./install kubernetes-admin@kubernetes app-only -y
 
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
