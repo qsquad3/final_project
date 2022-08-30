@@ -19,6 +19,7 @@ sudo tee /etc/sysctl.d/kubernetes.conf <<EOF
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 net.ipv4.ip_forward = 1
+net.bridge.bridge-nf-call-iptables = 1
 EOF
 
 sudo sysctl --system
@@ -69,10 +70,6 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.
 sudo apt-get update
 sudo apt-get install helm
 
-# Add kubernetes-dashboard repository
-sudo helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
-sudo helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard
-
 # Install nginx-ingress
 #sudo helm repo add nginx-stable https://helm.nginx.com/stable
 #sudo helm repo update
@@ -86,9 +83,21 @@ cd docker-files/kubernetes
 #sudo kubectl apply -f app-deploy.yaml
 #sudo kubectl apply -f app-service.yaml
 
+
 # Install Calico cni
 cd /tmp
-curl https://docs.projectcalico.org/manifests/calico.yaml -O
-sudo kubectl apply -f /tmp/calico.yaml
+sudo wget https://docs.projectcalico.org/manifests/custom-resources.yaml
+sudo sed -i 's/192.168/10.0/g' custom-resources.yaml
+sudo kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/tigera-operator.yaml
+sudo kubectl create -f custom-resources.yaml
+sudo kubectl taint nodes --all node-role.kubernetes.io/control-plane- node-role.kubernetes.io/master-
+
+# kubernetes-dashboard 
+#sudo helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+#sudo helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard
+sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+# kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 8443:443 --address 0.0.0.0
+
+
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt

@@ -6,13 +6,13 @@ variable "accesskey" {
 
 variable "secretkey" {
  description = "AWS Secret Key"
- default = "SUA-SECRET-AWS"
+ default = "SUA-SECRET-KEY"
  type = string
 }
 
 variable "ssh_keypair" {
  description = "SSH keypair to use for EC2 instance"
- default = "SUA-CHAVE-SSH"
+ default = "NOME-CHAVE-SSH"
  type = string
 }
 variable "region" {

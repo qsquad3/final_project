@@ -53,7 +53,7 @@ sudo docker-compose up -d
 cd /docker/docker-files/app
 sudo docker login -u qsquad3 -p dckr_pat_c6BWxdwtDLByUnP8f8JxD76SxWU
 sudo docker build -t app .
-sudo dockger tag app qsquad3/app
+sudo docker tag app qsquad3/app
 sudo docker push qsquad3/app
 
 
