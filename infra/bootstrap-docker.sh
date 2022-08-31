@@ -2,7 +2,7 @@
 yum update -y
 yum install git -y
 # set hostname
-sudo hostnamectl set-hostname "docker.squad3.local"
+sudo hostnamectl set-hostname "docker.cluster.local"
 # Disable swap & add kernel settings
 sudo swapoff -a
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab

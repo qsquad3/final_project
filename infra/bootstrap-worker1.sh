@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set hostname
-sudo hostnamectl set-hostname "k8worker1.squad3.local"
+sudo hostnamectl set-hostname "k8worker1.cluster.local"
 sudo apt-get install curl -y
 # Disable swap & add kernel settings
 sudo swapoff -a
@@ -34,9 +34,9 @@ sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/c
 sudo systemctl restart containerd
 sudo systemctl enable containerd
 # hosts para kubernets
-sudo echo "10.0.3.11   k8smaster" >> /etc/hosts
-sudo echo "10.0.3.12   k8worker1" >> /etc/hosts
-sudo echo "10.0.3.13   k8worker2" >> /etc/hosts
+sudo echo "10.0.3.11   k8smaster    k8smaster.cluster.local" >> /etc/hosts
+sudo echo "10.0.3.12   k8worker1    k8worker1.cluster.local" >> /etc/hosts
+sudo echo "10.0.3.13   k8worker2    k8worker2.cluster.local" >> /etc/hosts
 # Install Kubernetes
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
