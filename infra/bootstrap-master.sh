@@ -52,7 +52,7 @@ sudo echo "10.0.3.12   k8worker1    k8worker1.cluster.local" >> /etc/hosts
 sudo echo "10.0.3.13   k8worker2    k8worker2.cluster.local" >> /etc/hosts
 
 sudo service apache2 start
-sudo su -c "sudo kubeadm init --pod-network-cidr=10.48.0.0/16 --service-cidr=10.49.0.0/16" root
+sudo su -c "sudo kubeadm init --pod-network-cidr=10.48.0.0/16 --service-cidr=10.49.0.0/16 --control-plane-endpoint `curl ifconfig.me`" root
 
 sudo su -c "mkdir -p /root/.kube" root
 sudo su -c "sudo cp -i /etc/kubernetes/admin.conf /root/.kube/config" root
@@ -61,7 +61,7 @@ sudo su -c "export KUBECONFIG=/etc/kubernetes/admin.conf" root
 
 sudo kubeadm token create --print-join-command > /var/www/html/join.txt
 
-sudo kubeadm init --pod-network-cidr=10.48.0.0/16 --service-cidr=10.49.0.0/16
+sudo kubeadm init --pod-network-cidr=10.48.0.0/16 --service-cidr=10.49.0.0/16 --control-plane-endpoint `curl ifconfig.me`
 
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -103,7 +103,7 @@ sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.
 #sudo kubectl apply -f oper-dash.yaml
 #sudo /usr/bin/k8s-dashboard-svc.sh start
 # http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
-# kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 8443:443 --address 0.0.0.0
+#kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 8443:443 --address 0.0.0.0
 
 # Install Tanka
 sudo curl -fSL -o "/usr/bin/tk" "https://github.com/grafana/tanka/releases/download/v0.7.1/tk-linux-amd64"
