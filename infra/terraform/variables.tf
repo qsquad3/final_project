@@ -1,20 +1,3 @@
-variable "accesskey" {
-  description = "AWS Access Key"
-  default     = "sua-key"
-  type        = string
-}
-
-variable "secretkey" {
-  description = "AWS Secret Key"
-  default     = "sua-secret"
-  type        = string
-}
-
-variable "ssh_keypair" {
-  description = "SSH keypair to use for EC2 instance"
-  default     = "nome-sua-chave-ssh"
-  type        = string
-}
 variable "region" {
   description = "AWS region"
   default     = "us-east-1"

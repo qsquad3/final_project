@@ -84,11 +84,11 @@ sudo apt-get install helm
 sudo mkdir /deploys
 cd /deploys
 sudo git clone https://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@github.com/qsquad3/docker-files.git
-#cd docker-files/kubernetes
+cd docker-files/kubernetes
 #sudo cp k8s-dashboard-svc.sh /usr/bin/k8s-dashboard-svc.sh
 #sudo chmod +x /usr/bin/k8s-dashboard-svc.sh
-#sudo kubectl apply -f app-deploy.yaml
-#sudo kubectl apply -f app-service.yaml
+sudo kubectl apply -f app-deploy.yaml
+sudo kubectl apply -f app-service.yaml
 
 # Install Calico cni
 sudo helm repo add projectcalico https://projectcalico.docs.tigera.io/charts
@@ -97,13 +97,7 @@ sudo helm install calico projectcalico/tigera-operator --version v3.24.1 --names
 
 # kubernetes-dashboard 
 sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
-#cd /deploy
-#cd docker-files/kubernetes
-#sudo kubectl apply -f admin-dash.yaml
-#sudo kubectl apply -f oper-dash.yaml
-#sudo /usr/bin/k8s-dashboard-svc.sh start
-# http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
-#kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 8443:443 --address 0.0.0.0
+
 
 # Install Tanka
 sudo curl -fSL -o "/usr/bin/tk" "https://github.com/grafana/tanka/releases/download/v0.7.1/tk-linux-amd64"
