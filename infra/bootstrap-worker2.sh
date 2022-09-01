@@ -45,7 +45,7 @@ sudo apt update
 sudo apt install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
-sleep 20
+sleep 60
 sudo curl http://10.0.3.11/join.txt | bash
 
 # somente pra saber se chegou até o final
