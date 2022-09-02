@@ -8,6 +8,14 @@ This is a final project SRE BootCamp.
 - Claudia Jugue [<p align="left"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></p>](https://www.linkedin.com/in/claudia-jugue/)
 - Gabriel Mariusso [<p align="left"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></p>](https://www.linkedin.com/in/gabriel-mariusso/)
 
+## Subir a Stack
+
+Para subir a estrutura completa basta seguir os passos abaixo:
+
+```
+git clone https://github.com/qsquad3/final_project.git
+```
+
 ## Infraestrutura Kubernetes
 
 A estrutura compõe-se de 3 hosts, sendo 1 MASTER e 2 WORKERS.
