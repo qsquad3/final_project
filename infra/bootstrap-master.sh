@@ -118,19 +118,6 @@ sudo chmod a+x "/usr/bin/jb"
 #sudo sed -i 's/grafana-agent-traces.default.svc.cluster.local/grafana/g' main.jsonnet
 #sudo ./install kubernetes-admin@kubernetes app-only -y
 
-# Install Grafana/Prometheus
-sudo mkdir /grafana
-cd /grafana
-sudo git clone https://github.com/prometheus-operator/kube-prometheus.git
-cd kube-prometheus
-sudo kubectl create -f manifests/setup
-sudo kubectl create -f manifests/
- 
-sudo kubectl --namespace monitoring port-forward svc/grafana 3000 --address=0.0.0.0 &
-sudo kubectl --namespace monitoring port-forward svc/prometheus-k8s 9090 --address=0.0.0.0 &
-sudo kubectl --namespace monitoring port-forward svc/alertmanager-main 9093 --address=0.0.0.0 &
-
-
 
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
