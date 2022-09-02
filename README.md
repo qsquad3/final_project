@@ -23,8 +23,8 @@ Nesta estrutura será armazenado a aplicação Python.
 
 A estrutura compõe-se de 1 host, sendo Docker Server.
 Nesta estrutura estamos subindo as ferramentas de modo automatizado, sendo elas:
-- Jenkins
-- ...
+- Jenkins (ippublico-instancia-docker:8084)
+- Grafana/Prometheus/Loki/Tempo (ippublico-instancia-docker:3000)
 
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
@@ -36,6 +36,8 @@ Nesta estrutura estamos subindo as ferramentas de modo automatizado, sendo elas:
 ## Aplicação Python
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+
+- Acesso aplicação (ippublico-instancia-kubernetes:8000)
 
 Diretório da aplicação: /app
 

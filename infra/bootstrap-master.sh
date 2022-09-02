@@ -106,18 +106,5 @@ sudo chmod a+x "/usr/bin/tk"
 sudo curl -fSL -o "/usr/bin/jb" "https://github.com/jsonnet-bundler/jsonnet-bundler/releases/download/v0.4.0/jb-linux-amd64"
 sudo chmod a+x "/usr/bin/jb"
 
-# Install TNS
-#sudo mkdir /tns
-#cd /tns
-#sudo git clone https://github.com/grafana/tns.git
-#cd /tns/tns
-#cd production/k8s-yamls-cloud/
-#sudo sed -i 's/grafana-agent-traces.default.svc.cluster.local/grafana/g' app-full.yaml
-#cd /tns/tns
-#cd production/sample/tns-cloud/
-#sudo sed -i 's/grafana-agent-traces.default.svc.cluster.local/grafana/g' main.jsonnet
-#sudo ./install kubernetes-admin@kubernetes app-only -y
-
-
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
