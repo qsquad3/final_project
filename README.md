@@ -16,7 +16,7 @@ Para subir a estrutura completa basta seguir os passos abaixo:
 git clone https://github.com/qsquad3/final_project.git
 ```
 
-*** Você precisa criar um arquivo chamado secrets.tf com suas credencias AWS conforme abaixo ***
+***Você precisa criar um arquivo chamado secrets.tf com suas credencias AWS conforme abaixo***
 
 ## Infraestrutura Kubernetes
 
