@@ -3,7 +3,7 @@ Projeto final para SRE BootCamp Quode Academy.
 
 
 <a href = "https://github.com/Tanu-N-Prabhu/Python/graphs/contributors">
-  <img src = "https://contrib.rocks/image?repo = qsquad3/final_project"/>
+  <img src = "https://contrib.rocks/image?repo=qsquad3/final_project"/>
 </a>
 
 
