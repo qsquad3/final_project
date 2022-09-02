@@ -1,7 +1,7 @@
 # Final Project Quode SRE BootCamp (Squad 3)
 This is a final project SRE BootCamp. 
 
-[![](https://github.com/remarkablemark.png?size=50)](https://github.com/remarkablemark)
+[![](https://avatars.githubusercontent.com/u/35777700?s=48&v=4)](https://avatars.githubusercontent.com/u/35777700?s=48&v=4)
 
 # Squad 3 Team
 - Cesar Gustavo da Silva Godinho [<p align="left"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></p>](https://www.linkedin.com/in/cgsgodinho/)
