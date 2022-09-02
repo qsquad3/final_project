@@ -16,6 +16,8 @@ Para subir a estrutura completa basta seguir os passos abaixo:
 git clone https://github.com/qsquad3/final_project.git
 ```
 
+*** Você precisa criar um arquivo chamado secrets.tf com suas credencias AWS conforme abaixo ***
+
 ## Infraestrutura Kubernetes
 
 A estrutura compõe-se de 3 hosts, sendo 1 MASTER e 2 WORKERS.
