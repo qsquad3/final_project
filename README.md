@@ -8,7 +8,7 @@ This is a final project SRE BootCamp.
 - Claudia Jugue [<p align="left"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></p>](https://www.linkedin.com/in/claudia-jugue/)
 - Gabriel Mariusso [<p align="left"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></p>](https://www.linkedin.com/in/gabriel-mariusso/)
 
-## Subir a Stack
+## Configurações para subir a Stack
 
 Para subir a estrutura completa basta seguir os passos abaixo:
 
@@ -17,6 +17,37 @@ git clone https://github.com/qsquad3/final_project.git
 ```
 
 :red_circle: ***Você precisa criar um arquivo chamado secrets.tf com suas credencias AWS conforme abaixo***
+
+```
+variable "accesskey" {
+  description = "AWS Access Key"
+  default     = "minha-access-key"
+  type        = string
+}
+
+variable "secretkey" {
+  description = "AWS Secret Key"
+  default     = "minha-secret-key"
+  type        = string
+}
+
+variable "ssh_keypair" {
+  description = "SSH keypair to use for EC2 instance"
+  default     = "minha-chave-ssh"
+  type        = string
+}
+```
+
+:red_circle: ***Você precisa criar, manualmente, um bucket S3 e adicionar o seu  nome no arquivo "provider.tf"***
+
+
+## Subindo a Stack
+
+```
+$ cd infra/terraform
+$ terraform init
+$ terraform apply
+```
 
 ## Infraestrutura Kubernetes
 
