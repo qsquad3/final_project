@@ -1,6 +1,8 @@
 # Final Project Quode SRE BootCamp (Squad 3)
 This is a final project SRE BootCamp. 
 
+[![](https://github.com/remarkablemark.png?size=50)](https://github.com/remarkablemark)
+
 # Squad 3 Team
 - Cesar Gustavo da Silva Godinho [<p align="left"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></p>](https://www.linkedin.com/in/cgsgodinho/)
 - Thiago Felipe de Andrade [<p align="left"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></p>](https://www.linkedin.com/in/thiago-felipe-de-andrade-932aab5/)
@@ -37,7 +39,7 @@ variable "secretkey" {
 
 variable "ssh_keypair" {
   description = "SSH keypair to use for EC2 instance"
-  default     = "minha-chave-ssh"
+  default     = "nome-chave-ssh"
   type        = string
 }
 ```
