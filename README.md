@@ -17,6 +17,10 @@ git clone https://github.com/qsquad3/final_project.git
 ```
 
 :red_circle: ***Você precisa criar um arquivo chamado secrets.tf com suas credencias AWS conforme abaixo***
+```
+cd final_project/infra/terraform
+vim secrets.tf
+```
 
 ```
 variable "accesskey" {
@@ -44,7 +48,7 @@ variable "ssh_keypair" {
 ## Subindo a Stack
 
 ```
-$ cd infra/terraform
+$ cd final_project/infra/terraform
 $ terraform init
 $ terraform apply
 ```
