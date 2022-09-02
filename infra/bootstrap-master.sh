@@ -89,6 +89,7 @@ cd docker-files/kubernetes
 #sudo chmod +x /usr/bin/k8s-dashboard-svc.sh
 sudo kubectl apply -f app-deploy.yaml
 sudo kubectl apply -f app-service.yaml
+sudo kubectl apply -f grafana.yaml
 
 # Install Calico cni
 sudo helm repo add projectcalico https://projectcalico.docs.tigera.io/charts
@@ -111,10 +112,10 @@ cd /tns
 sudo git clone https://github.com/grafana/tns.git
 cd /tns/tns
 cd production/k8s-yamls-cloud/
-sudo sed -i 's/grafana-agent-traces.default.svc.cluster.local/localhost/g' app-full.yaml
+sudo sed -i 's/grafana-agent-traces.default.svc.cluster.local/grafana/g' app-full.yaml
 cd /tns/tns
 cd production/sample/tns-cloud/
-sudo sed -i 's/grafana-agent-traces.default.svc.cluster.local/localhost/g' main.jsonnet
+sudo sed -i 's/grafana-agent-traces.default.svc.cluster.local/grafana/g' main.jsonnet
 #sudo ./install kubernetes-admin@kubernetes app-only -y
 
 # somente pra saber se chegou até o final
