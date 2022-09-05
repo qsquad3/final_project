@@ -82,5 +82,5 @@ Nesta estrutura estamos subindo as ferramentas de modo automatizado, sendo elas:
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
-- Acesso aplicação (ippublico-instancia-kubernetes:8000)
+- Acesso aplicação (ippublico-instancia-kubernetes:8500)
 
