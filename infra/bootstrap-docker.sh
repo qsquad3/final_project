@@ -39,7 +39,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 # IMAGES and Containers
 sudo mkdir /docker
 cd /docker
-sudo git clone https://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@github.com/qsquad3/docker-files.it
+sudo git clone https://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@github.com/qsquad3/docker-files.git
 
 # JENKINS 
 cd /docker/docker-files/jenkins
