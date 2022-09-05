@@ -65,7 +65,7 @@ cd production/docker-compose
 sudo rm -rf prometheus.yaml
 sudo cp /docker/docker-files/tns/prometheus.yaml .
 sudo docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
-sudo docker-compose up -d
+#sudo docker-compose up -d
 
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
