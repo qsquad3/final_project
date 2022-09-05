@@ -39,7 +39,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 # IMAGES and Containers
 sudo mkdir /docker
 cd /docker
-sudo git clone https://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@github.com/qsquad3/docker-files.git
+sudo git clone https://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@github.com/qsquad3/docker-files.it
 
 # JENKINS 
 cd /docker/docker-files/jenkins
@@ -62,8 +62,8 @@ cd /tns
 sudo git clone https://github.com/grafana/tns.git
 cd /tns/tns
 cd production/docker-compose
-#sudo rm -rf prometheus.yaml
-#sudo cp /docker/docker-files/tns/prometheus.yaml .
+sudo rm -rf prometheus.yaml
+sudo cp /docker/docker-files/tns/prometheus.yaml .
 sudo docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
 sudo docker-compose up -d
 
