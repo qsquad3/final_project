@@ -79,15 +79,18 @@ sudo apt-get install helm
 # Deploy kubernetes files
 sudo kubectl create namespace app-prod
 sudo kubectl create namespace app-dev
+sudo kubectl label namespace app-prod istio-injection=enabled
+sudo kubectl label namespace app-dev istio-injection=enabled
 sudo mkdir /deploys
 cd /deploys
 sudo git clone https://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@github.com/qsquad3/docker-files.git
 cd docker-files/kubernetes
 #sudo cp k8s-dashboard-svc.sh /usr/bin/k8s-dashboard-svc.sh
 #sudo chmod +x /usr/bin/k8s-dashboard-svc.sh
-sudo kubectl apply -f app-deploy.yaml
 sudo kubectl apply -f app-service.yaml
-sudo kubectl apply -f grafana.yaml
+sudo kubectl apply -f app-replicaset.yaml
+sudo kubectl apply -f app-deploy.yaml
+#sudo kubectl apply -f grafana.yaml
 
 # Install Calico cni
 sudo helm repo add projectcalico https://projectcalico.docs.tigera.io/charts
@@ -117,7 +120,6 @@ sudo helm install \
 sudo kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.15/samples/addons/prometheus.yaml
 #sudo kubectl port-forward svc/kiali 20001:20001 -n istio-system --address=0.0.0.0
 #sudo kubectl create token kiali-service-account -n istio-system
-
 
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
