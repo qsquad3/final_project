@@ -75,12 +75,10 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.
 sudo apt-get update
 sudo apt-get install helm
 
-# Install nginx-ingress
-#sudo helm repo add nginx-stable https://helm.nginx.com/stable
-#sudo helm repo update
-#sudo helm install ingress-nginx nginx-stable/nginx-ingress
 
 # Deploy kubernetes files
+sudo kubectl create namespace app-prod
+sudo kubectl create namespace app-dev
 sudo mkdir /deploys
 cd /deploys
 sudo git clone https://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@github.com/qsquad3/docker-files.git
@@ -99,12 +97,27 @@ sudo helm install calico projectcalico/tigera-operator --version v3.24.1 --names
 # kubernetes-dashboard 
 sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
 
+# Install Istio
+sudo helm repo add istio https://istio-release.storage.googleapis.com/charts
+sudo helm repo update
+sudo kubectl create namespace istio-system
+sudo helm install istio-base istio/base -n istio-system
+sudo helm install istiod istio/istiod -n istio-system --wait
 
-# Install Tanka
-sudo curl -fSL -o "/usr/bin/tk" "https://github.com/grafana/tanka/releases/download/v0.7.1/tk-linux-amd64"
-sudo chmod a+x "/usr/bin/tk"
-sudo curl -fSL -o "/usr/bin/jb" "https://github.com/jsonnet-bundler/jsonnet-bundler/releases/download/v0.4.0/jb-linux-amd64"
-sudo chmod a+x "/usr/bin/jb"
+# Install Kiali
+sudo helm repo add kiali https://kiali.org/helm-charts
+sudo helm repo update
+sudo helm install \
+    --set cr.create=true \
+    --set cr.namespace=istio-system \
+    --namespace kiali-operator \
+    --create-namespace \
+    kiali-operator \
+    kiali/kiali-operator
+sudo kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.15/samples/addons/prometheus.yaml
+#sudo kubectl port-forward svc/kiali 20001:20001 -n istio-system --address=0.0.0.0
+#sudo kubectl create token kiali-service-account -n istio-system
+
 
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt

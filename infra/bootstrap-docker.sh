@@ -50,7 +50,10 @@ cd /docker/docker-files/pgsql
 sudo docker-compose up -d
 
 # APP (buid image)
-cd /docker/docker-files/app
+sudo mkdir /app-quode
+cd /app-quode
+sudo git clone https://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@github.com/qsquad3/final-project-application.git
+cd /app-quode/final-project-application/src
 sudo docker login -u qsquad3 -p dckr_pat_c6BWxdwtDLByUnP8f8JxD76SxWU
 sudo docker build -t app .
 sudo docker tag app qsquad3/app
