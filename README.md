@@ -58,6 +58,9 @@ A estrutura compõe-se de 3 hosts, sendo 1 MASTER e 2 WORKERS.
 A implantação da estrutura é feita via Terraform, configurando automaticamente o host MASTER e efetuando JOIN dos dois hosts WORKERS.
 Nesta estrutura será armazenado a aplicação Python.
 
+- ISTIO
+- Kiali (precisa expor a porta 20001 no kubernetes)
+
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
@@ -69,8 +72,7 @@ A estrutura compõe-se de 1 host, sendo Docker Server.
 Nesta estrutura estamos subindo as ferramentas de modo automatizado, sendo elas:
 - Jenkins (ippublico-instancia-docker:8084)
 - Grafana/Prometheus/Loki/Tempo (ippublico-instancia-docker:3000)
-- ISTIO
-- Kiali (precisa expor a porta 20001 no kubernetes)
+- Adminer (Adminstração PGSQL - Porta 8181)
 
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
