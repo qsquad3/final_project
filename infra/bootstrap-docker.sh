@@ -41,6 +41,16 @@ sudo mkdir /docker
 cd /docker
 sudo git clone https://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@github.com/qsquad3/docker-files.git
 
+# Expor o deamon do docker
+sudo mkdir -p /etc/systemd/system/docker.service.d/
+sudo vi /etc/systemd/system/docker.service.d/override.conf <<EOF
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker.service
+
 # JENKINS 
 cd /docker/docker-files/jenkins
 sudo docker-compose up -d
@@ -49,15 +59,15 @@ sudo docker-compose up -d
 cd /docker/docker-files/pgsql
 sudo docker-compose up -d
 
-# APP (Feito agora via GitHub Action)
-#sudo mkdir /app-quode
-#cd /app-quode
-#sudo git clone https://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@github.com/qsquad3/final-project-application.git
-#cd /app-quode/final-project-application/src
-#sudo docker login -u qsquad3 -p dckr_pat_c6BWxdwtDLByUnP8f8JxD76SxWU
-#sudo docker build -t app .
-#sudo docker tag app qsquad3/app
-#sudo docker push qsquad3/app
+# APP (buid image)
+sudo mkdir /app-quode
+cd /app-quode
+sudo git clone https://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@github.com/qsquad3/final-project-application.git
+cd /app-quode/final-project-application/src
+sudo docker login -u qsquad3 -p dckr_pat_c6BWxdwtDLByUnP8f8JxD76SxWU
+sudo docker build -t app .
+sudo docker tag app qsquad3/app
+sudo docker push qsquad3/app
 
 # Install TNS-Grafana
 sudo mkdir /tns
