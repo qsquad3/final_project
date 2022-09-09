@@ -2,7 +2,6 @@
 Projeto final para SRE BootCamp Quode Academy. 
 
 # Squad 3 Team
-- Cesar Gustavo da Silva Godinho [<p align="left"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></p>](https://www.linkedin.com/in/cgsgodinho/)
 - Claudia Jugue [<p align="left"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></p>](https://www.linkedin.com/in/claudia-jugue/)
 - Fabiano Cesar Gaspar [<p align="left"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></p>](https://www.linkedin.com/in/thiago-felipe-de-andrade-932aab5/)
 - Gabriel Mariusso [<p align="left"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></p>](https://www.linkedin.com/in/gabriel-mariusso/)
@@ -70,6 +69,8 @@ A estrutura compõe-se de 1 host, sendo Docker Server.
 Nesta estrutura estamos subindo as ferramentas de modo automatizado, sendo elas:
 - Jenkins (ippublico-instancia-docker:8084)
 - Grafana/Prometheus/Loki/Tempo (ippublico-instancia-docker:3000)
+- ISTIO
+- Kiali (precisa expor a porta 20001 no kubernetes)
 
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
@@ -82,5 +83,6 @@ Nesta estrutura estamos subindo as ferramentas de modo automatizado, sendo elas:
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
+- O build da imagem da aplicação é feita via CICD GitHub Action após um push no repositório "final-project-application"
 - Acesso aplicação (ippublico-instancia-kubernetes:8500)
 
