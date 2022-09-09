@@ -80,6 +80,7 @@ sudo apt-get install helm
 sudo kubectl create namespace app-prod
 sudo kubectl create namespace app-dev
 sudo kubectl label namespace app-prod istio-injection=enabled
+sudo kubectl label namespace app-prod version=production
 sudo kubectl label namespace app-dev istio-injection=enabled
 sudo mkdir /deploys
 cd /deploys
