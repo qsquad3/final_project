@@ -90,10 +90,11 @@ sudo git clone https://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@github.com/qsqua
 cd docker-files/kubernetes
 #sudo cp k8s-dashboard-svc.sh /usr/bin/k8s-dashboard-svc.sh
 #sudo chmod +x /usr/bin/k8s-dashboard-svc.sh
-sudo kubectl apply -f app-cm.yaml
+### sudo kubectl apply -f app-cm.yaml
 sudo kubectl apply -f app-service.yaml
 sudo kubectl apply -f app-replicaset.yaml
-sudo kubectl apply -f app-deploy-new.yaml
+sudo kubectl apply -f app-deploy.yaml
+### sudo kubectl apply -f app-deploy-new.yaml
 #sudo kubectl apply -f grafana.yaml
 
 # Install Calico cni
