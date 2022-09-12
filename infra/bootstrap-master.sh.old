@@ -46,7 +46,7 @@ sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 sudo apt update
 sudo apt install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
-# hosts para kubernetes
+# hosts para kubernets
 sudo echo "10.0.3.11   k8smaster    k8smaster.cluster.local" >> /etc/hosts
 sudo echo "10.0.3.12   k8worker1    k8worker1.cluster.local" >> /etc/hosts
 sudo echo "10.0.3.13   k8worker2    k8worker2.cluster.local" >> /etc/hosts
@@ -90,10 +90,9 @@ sudo git clone https://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@github.com/qsqua
 cd docker-files/kubernetes
 #sudo cp k8s-dashboard-svc.sh /usr/bin/k8s-dashboard-svc.sh
 #sudo chmod +x /usr/bin/k8s-dashboard-svc.sh
-sudo kubectl apply -f app-cm.yaml
 sudo kubectl apply -f app-service.yaml
 sudo kubectl apply -f app-replicaset.yaml
-sudo kubectl apply -f app-deploy-new.yaml
+sudo kubectl apply -f app-deploy.yaml
 #sudo kubectl apply -f grafana.yaml
 
 # Install Calico cni
