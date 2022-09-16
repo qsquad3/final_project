@@ -91,9 +91,9 @@ cd docker-files/kubernetes
 #sudo cp k8s-dashboard-svc.sh /usr/bin/k8s-dashboard-svc.sh
 #sudo chmod +x /usr/bin/k8s-dashboard-svc.sh
 ### sudo kubectl apply -f app-cm.yaml
-sudo kubectl apply -f app-service.yaml
-sudo kubectl apply -f app-replicaset.yaml
-sudo kubectl apply -f app-deploy.yaml
+#-sudo kubectl apply -f app-service.yaml
+#-sudo kubectl apply -f app-replicaset.yaml
+#-sudo kubectl apply -f app-deploy.yaml
 ### sudo kubectl apply -f app-deploy-new.yaml
 #sudo kubectl apply -f grafana.yaml
 
@@ -130,8 +130,8 @@ sudo kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.15
 echo "ok" > /tmp/ok.txt
 
 # Deleta pod app-quode para entrar no ISTIO
-sudo kubectl get pod -n app-prod| grep app-quode|awk {'print $1'} >> /tmp/pods.txt
-for i in `cat /tmp/pods.txt`;do
-sudo kubectl delete pod $i -n app-prod
-sleep 60
-done
+##sudo kubectl get pod -n app-prod| grep app-quode|awk {'print $1'} >> /tmp/pods.txt
+##for i in `cat /tmp/pods.txt`;do
+##sudo kubectl delete pod $i -n app-prod
+##sleep 60
+##done
