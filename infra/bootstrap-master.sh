@@ -77,36 +77,6 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.
 sudo apt-get update
 sudo apt-get install helm
 
-
-# Deploy kubernetes files
-##sudo kubectl create namespace app-prod
-##sudo kubectl create namespace app-dev
-##sudo kubectl label namespace app-prod istio-injection=enabled
-##sudo kubectl label namespace app-prod version=production
-##sudo kubectl label namespace app-dev istio-injection=enabled
-##sudo kubectl label namespace app-prod version=developer
-sudo kubectl create namespace app
-sudo kubectl label namespace app istio-injection=enabled
-#sudo kubectl label namespace app version=production
-sudo mkdir /deploys
-cd /deploys
-sudo git clone https://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@github.com/qsquad3/docker-files.git
-#thi-cd docker-files/kubernetes
-#sudo cp k8s-dashboard-svc.sh /usr/bin/k8s-dashboard-svc.sh
-#sudo chmod +x /usr/bin/k8s-dashboard-svc.sh
-### sudo kubectl apply -f app-cm.yaml
-#thi-sudo kubectl apply -f app-service.yaml
-#thi-sudo kubectl apply -f app-replicaset.yaml
-#thi-sudo kubectl apply -f app-deploy.yaml
-### sudo kubectl apply -f app-deploy-new.yaml
-#sudo kubectl apply -f grafana.yaml
-
-# teste thiago bluegreen
-#cd docker-files/kubernetes/blue-green
-#for i in `ls -1`; do
-#    sudo kubectl apply -f $i
-#    sleep 30
-#done
 # Install Calico cni
 sudo helm repo add projectcalico https://projectcalico.docs.tigera.io/charts
 sudo kubectl create namespace tigera-operator
@@ -115,40 +85,16 @@ sudo helm install calico projectcalico/tigera-operator --version v3.24.1 --names
 # kubernetes-dashboard 
 sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
 
-# Install Istio
-sudo helm repo add istio https://istio-release.storage.googleapis.com/charts
-sudo helm repo update
-sudo kubectl create namespace istio-system
-sudo helm install istio-base istio/base -n istio-system
-sudo helm install istiod istio/istiod -n istio-system --wait
-sudo helm install istio-ingressgateway istio/gateway -n istio-system
+# Deploy kubernetes files
+sudo kubectl create namespace app
+sudo mkdir /deploys
+cd /deploys
+sudo git clone https://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@github.com/qsquad3/docker-files.git
+cd docker-files/kubernetes
+sudo kubectl apply -f app-service.yaml
+sudo kubectl apply -f app-deploy.yaml
+sudo kubectl apply -f app-replicaset.yaml
 
-# Install Kiali
-sudo helm repo add kiali https://kiali.org/helm-charts
-sudo helm repo update
-sudo helm install \
-    --set cr.create=true \
-    --set cr.namespace=istio-system \
-    --namespace kiali-operator \
-    --create-namespace \
-    kiali-operator \
-    kiali/kiali-operator
-sudo kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.15/samples/addons/prometheus.yaml
-#sudo kubectl port-forward svc/kiali 20001:20001 -n istio-system --address=0.0.0.0
-#sudo kubectl create token kiali-service-account -n istio-system
-
-# app deploy
-cd cd /deploys/docker-files/kubernetes/blue-green/
-for i in `ls -1`; do
-    sudo kubectl apply -f $i
-    sleep 15
-done
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
 
-# Deleta pod app-quode para entrar no ISTIO
-##sudo kubectl get pod -n app-prod| grep app-quode|awk {'print $1'} >> /tmp/pods.txt
-##for i in `cat /tmp/pods.txt`;do
-##sudo kubectl delete pod $i -n app-prod
-##sleep 60
-##done
