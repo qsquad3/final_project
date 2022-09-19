@@ -3,7 +3,7 @@ resource "aws_instance" "k8master" {
    instance_type     = var.instancia
    availability_zone = "us-east-1a"
    key_name          = var.ssh_keypair
-   user_data = "${file("../bootstrap-master.sh")}"
+   user_data = "${file("../bootstrap-master-bluegreen.sh")}"
    #depends_on = [aws_elb.LB]
    network_interface {
      device_index         = 0
