@@ -61,6 +61,7 @@ Nesta estrutura será armazenado a aplicação Python.
 
 - ISTIO
 - Kiali (precisa expor a porta 20001 no kubernetes)
+- DataDog (Cloud Version)
 
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
