@@ -73,5 +73,9 @@ sudo cp /docker/docker-files/tns/prometheus.yaml .
 sudo docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
 sudo docker-compose up -d
 
+#Install DataDog
+# Docker
+sudo docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=d02690e83d0162e671b9ff6436597738 -e DD_SITE="datadoghq.com" gcr.io/datadoghq/agent:7
+
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt

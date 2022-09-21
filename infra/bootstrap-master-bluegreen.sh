@@ -77,6 +77,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.
 sudo apt-get update
 sudo apt-get install helm
 
+
 # Install Calico cni
 sudo helm repo add projectcalico https://projectcalico.docs.tigera.io/charts
 sudo kubectl create namespace tigera-operator
@@ -85,21 +86,45 @@ sudo helm install calico projectcalico/tigera-operator --version v3.24.1 --names
 # kubernetes-dashboard 
 sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
 
+# Install Istio
+sudo helm repo add istio https://istio-release.storage.googleapis.com/charts
+sudo helm repo update
+sudo kubectl create namespace istio-system
+sudo helm install istio-base istio/base -n istio-system
+sudo helm install istiod istio/istiod -n istio-system --wait
+sudo kubectl create namespace istio-ingress
+sudo kubectl label namespace istio-ingress istio-injection=enabled
+sudo helm install istio-ingress istio/gateway -n istio-ingress
+
+
+# Install Kiali
+sudo helm repo add kiali https://kiali.org/helm-charts
+sudo helm repo update
+sudo helm install \
+    --set cr.create=true \
+    --set cr.namespace=istio-system \
+    --namespace kiali-operator \
+    --create-namespace \
+    kiali-operator \
+    kiali/kiali-operator
+sudo kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.15/samples/addons/prometheus.yaml
+#sudo kubectl port-forward svc/kiali 20001:20001 -n istio-system --address=0.0.0.0
+#sudo kubectl create token kiali-service-account -n istio-system
+
 # Deploy kubernetes files
 sudo kubectl create namespace app
+sudo kubectl label namespace app istio-injection=enabled
 sudo mkdir /deploys
 cd /deploys
 sudo git clone https://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@github.com/qsquad3/docker-files.git
-cd docker-files/kubernetes
-sudo kubectl apply -f app-service.yaml
-sudo kubectl apply -f app-deploy.yaml
-sudo kubectl apply -f app-replicaset.yaml
-
-# Install DataDog
-sudo helm repo add datadog https://helm.datadoghq.com
-sudo helm repo update
-# k8s
-sudo helm install RELEASE_NAME -f datadog-values.yaml --set datadog.site='datadoghq.com' --set datadog.apiKey=d02690e83d0162e671b9ff6436597738 datadog/datadog 
+cd docker-files/kubernetes/blue-green
+sudo kubectl apply -f app-service-dev.yaml
+sudo kubectl apply -f app-service-prod.yaml
+sudo kubectl apply -f istio-gw.yaml
+sudo kubectl apply -f istio-virtualservice.yaml
+sudo kubectl apply -f app-deploy-dev.yaml
+sleep 15
+sudo kubectl apply -f app-deploy-prod.yaml
 
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
