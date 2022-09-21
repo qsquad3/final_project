@@ -74,6 +74,8 @@ sudo docker plugin install grafana/loki-docker-driver:latest --alias loki --gran
 sudo docker-compose up -d
 
 #Install DataDog
+# Ubuntu
+DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d02690e83d0162e671b9ff6436597738 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 # Docker
 sudo docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=d02690e83d0162e671b9ff6436597738 -e DD_SITE="datadoghq.com" gcr.io/datadoghq/agent:7
 

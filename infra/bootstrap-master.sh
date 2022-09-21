@@ -96,11 +96,14 @@ sudo kubectl apply -f app-deploy.yaml
 sudo kubectl apply -f app-replicaset.yaml
 
 # Install DataDog
-sudo helm repo add datadog https://helm.datadoghq.com
-sudo helm repo update
+# Ubuntu
+DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d02690e83d0162e671b9ff6436597738 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 # k8s
-sudo helm install RELEASE_NAME -f datadog-values.yaml --set datadog.site='datadoghq.com' --set datadog.apiKey=d02690e83d0162e671b9ff6436597738 datadog/datadog 
-
+sudo helm repo add datadog https://helm.datadoghq.com
+sudo helm install my-datadog-operator datadog/datadog-operator
+sudo kubectl create secret generic datadog-secret --from-literal api-key=d02690e83d0162e671b9ff6436597738 --from-literal app-key=d02690e83d0162e671b9ff6436597738
+cd /deploys/docker-files/kubernetes
+sudo kubectl apply -f datadog-values.yaml
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
 

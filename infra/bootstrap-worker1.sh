@@ -47,5 +47,9 @@ sudo apt-mark hold kubelet kubeadm kubectl
 sleep 60
 sudo curl http://10.0.3.11/join.txt | bash
 
+# Install DataDog
+# Ubuntu
+DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d02690e83d0162e671b9ff6436597738 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
