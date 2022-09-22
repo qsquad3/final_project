@@ -6,7 +6,7 @@ variable "region" {
 
 variable "instancia" {
   description = "Tipo Instancia"
-  default     = "t3.xlarge"
+  default     = "t3.large"
   type        = string
 }
 variable "vpc" {

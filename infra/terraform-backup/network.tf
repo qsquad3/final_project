@@ -95,7 +95,7 @@ resource "aws_route_table" "rtpub" {
    vpc                       = true
    network_interface         = aws_network_interface.k8s-master-nic.id
    associate_with_private_ip = var.k8smaster-nic
-   depends_on                = [aws_internet_gateway.gw]
+   depends_on                = [aws_instance.k8master]
  }
 
 # K8s-Worker1
@@ -109,7 +109,7 @@ resource "aws_route_table" "rtpub" {
    vpc                       = true
    network_interface         = aws_network_interface.k8s-worker1-nic.id
    associate_with_private_ip = var.k8sworker1-nic
-   depends_on                = [aws_internet_gateway.gw]
+   depends_on                = [aws_instance.k8worker1]
  }
  #K8s-Worker2
  resource "aws_network_interface" "k8s-worker2-nic" {
@@ -122,7 +122,7 @@ resource "aws_route_table" "rtpub" {
    vpc                       = true
    network_interface         = aws_network_interface.k8s-worker2-nic.id
    associate_with_private_ip = var.k8sworker2-nic
-   depends_on                = [aws_internet_gateway.gw]
+   depends_on                = [aws_instance.k8worker2]
  }
 # DockerServer
  resource "aws_network_interface" "docker-nic" {
@@ -135,5 +135,5 @@ resource "aws_route_table" "rtpub" {
    vpc                       = true
    network_interface         = aws_network_interface.docker-nic.id
    associate_with_private_ip = var.docker-nic
-   depends_on                = [aws_internet_gateway.gw]
+   depends_on                = [aws_instance.docker]
  }

@@ -11,6 +11,5 @@ resource "aws_instance" "docker" {
 
    tags = {
      Name = "Docker-Server"
-     Backup = "true"
    }
  }
