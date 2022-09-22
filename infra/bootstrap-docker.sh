@@ -56,7 +56,8 @@ sudo docker-compose up -d
 # Install PGSQL
 sleep 3
 cd /docker/docker-files/pgsql
-sudo docker-compose up -d
+sudo docker-compose -f docker-compose.yml up -d
+sudo docker-compose -f docker-compose-dev.yml upd -d
 
 # Install TNS-Grafana.
 sudo mkdir /tns
