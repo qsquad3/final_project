@@ -84,6 +84,15 @@ sudo helm install calico projectcalico/tigera-operator --version v3.24.1 --names
 # Install kubernetes-dashboard 
 sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
 
+# Install DataDog
+# Ubuntu Agent
+DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d02690e83d0162e671b9ff6436597738 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+# Kubernetes Agent
+sudo helm repo add datadog https://helm.datadoghq.com
+sudo helm repo update
+cd /deploys/docker-files/kubernetes
+sudo helm install datadog-k8s -f datadog-values.yaml  datadog/datadog --set targetSystem=linux --set clusterAgent.replicas=2 --set clusterAgent.createPodDisruptionBudget=true
+
 # Deploy kubernetes files
 sudo kubectl create namespace app
 sudo kubectl create namespace app-dev
@@ -96,15 +105,6 @@ sudo kubectl apply -f app-deploy.yaml
 sudo kubectl apply -f app-service-dev.yaml
 sudo kubectl apply -f app-deploy-dev.yaml
 #sudo kubectl apply -f app-replicaset.yaml
-
-# Install DataDog
-# Ubuntu Agent
-DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d02690e83d0162e671b9ff6436597738 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
-# Kubernetes Agent
-sudo helm repo add datadog https://helm.datadoghq.com
-sudo helm repo update
-cd /deploys/docker-files/kubernetes
-sudo helm install datadog-k8s -f datadog-values.yaml  datadog/datadog --set targetSystem=linux --set clusterAgent.replicas=2 --set clusterAgent.createPodDisruptionBudget=true
 
 # Sinalizando que chegou ao final do bootstrap
 echo "ok" > /tmp/ok.txt
