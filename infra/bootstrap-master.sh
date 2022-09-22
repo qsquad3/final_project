@@ -25,7 +25,6 @@ EOF
 sudo sysctl --system
 
 # Install docker
-
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update -y
@@ -82,7 +81,7 @@ sudo helm repo add projectcalico https://projectcalico.docs.tigera.io/charts
 sudo kubectl create namespace tigera-operator
 sudo helm install calico projectcalico/tigera-operator --version v3.24.1 --namespace tigera-operator
 
-# kubernetes-dashboard 
+# Install kubernetes-dashboard 
 sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
 
 # Deploy kubernetes files
@@ -99,14 +98,14 @@ sudo kubectl apply -f app-deploy-dev.yaml
 #sudo kubectl apply -f app-replicaset.yaml
 
 # Install DataDog
-# Ubuntu
+# Ubuntu Agent
 DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d02690e83d0162e671b9ff6436597738 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
-# k8s
+# Kubernetes Agent
 sudo helm repo add datadog https://helm.datadoghq.com
 sudo helm repo update
 cd /deploys/docker-files/kubernetes
 sudo helm install datadog-k8s -f datadog-values.yaml  datadog/datadog --set targetSystem=linux --set clusterAgent.replicas=2 --set clusterAgent.createPodDisruptionBudget=true
 
-# somente pra saber se chegou até o final
+# Sinalizando que chegou ao final do bootstrap
 echo "ok" > /tmp/ok.txt
 

@@ -33,10 +33,12 @@ containerd config default | sudo tee /etc/containerd/config.toml >/dev/null 2>&1
 sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
 sudo systemctl restart containerd
 sudo systemctl enable containerd
+
 # hosts para kubernets
 sudo echo "10.0.3.11   k8smaster    k8smaster.cluster.local" >> /etc/hosts
 sudo echo "10.0.3.12   k8worker1    k8worker1.cluster.local" >> /etc/hosts
 sudo echo "10.0.3.13   k8worker2    k8worker2.cluster.local" >> /etc/hosts
+
 # Install Kubernetes
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
@@ -48,8 +50,8 @@ sleep 60
 sudo curl http://10.0.3.11/join.txt | bash
 
 # Install DataDog
-# Ubuntu
+# Ubuntu Agent
 DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d02690e83d0162e671b9ff6436597738 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 
-# somente pra saber se chegou até o final
+# Sinalizando que chegou ao final do bootstrap
 echo "ok" > /tmp/ok.txt
