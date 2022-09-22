@@ -97,12 +97,12 @@ sudo kubectl apply -f app-deploy.yaml
 
 # Install DataDog
 # Ubuntu
-##DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d02690e83d0162e671b9ff6436597738 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d02690e83d0162e671b9ff6436597738 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 # k8s
-##sudo helm repo add datadog https://helm.datadoghq.com
-##sudo helm repo update
-##cd /deploys/docker-files/kubernetes
-##sudo helm install datadog-k8s -f datadog-values.yaml  datadog/datadog --set targetSystem=linux --set clusterAgent.replicas=2 --set clusterAgent.createPodDisruptionBudget=true
+sudo helm repo add datadog https://helm.datadoghq.com
+sudo helm repo update
+cd /deploys/docker-files/kubernetes
+sudo helm install datadog-k8s -f datadog-values.yaml  datadog/datadog --set targetSystem=linux --set clusterAgent.replicas=2 --set clusterAgent.createPodDisruptionBudget=true
 
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
