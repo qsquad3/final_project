@@ -4,16 +4,16 @@ resource "aws_security_group" "default-sg" {
    vpc_id      = aws_vpc.vpc.id
 
    ingress {
-     description = "HTTPS"
-     from_port   = 443
-     to_port     = 443
+     description = "APP-QUODE"
+     from_port   = 8500
+     to_port     = 8501
      protocol    = "tcp"
      cidr_blocks = ["0.0.0.0/0"]
    }
    ingress {
-     description = "HTTP-APP"
-     from_port   = 8000
-     to_port     = 8001
+     description = "GRAFANA"
+     from_port   = 3000
+     to_port     = 3000
      protocol    = "tcp"
      cidr_blocks = ["0.0.0.0/0"]
    }
@@ -26,8 +26,8 @@ resource "aws_security_group" "default-sg" {
    }
    ingress {
      description = "Jenkins"
-     from_port   = 8083
-     to_port     = 8083
+     from_port   = 8084
+     to_port     = 8084
      protocol    = "tcp"
      cidr_blocks = ["0.0.0.0/0"]
    }
@@ -45,29 +45,13 @@ resource "aws_security_group" "default-sg" {
      protocol    = "tcp"
      cidr_blocks = ["0.0.0.0/0"]
    }
-
    ingress {
-     description = "K8s"
-     from_port   = 6443
-     to_port     = 6443
-     protocol    = "tcp"
-     cidr_blocks = ["10.0.0.0/16"]
-   }
-   ingress {
-     description = "K8s2"
+     description = "Internal"
      from_port   = 0
      to_port     = 0
      protocol    = "-1"
      cidr_blocks = ["10.0.0.0/16"]
    }
-   ingress {
-     description = "PGSQL-INT"
-     from_port   = 5432
-     to_port     = 5432
-     protocol    = "tcp"
-     cidr_blocks = ["10.0.0.0/16"]
-   }
-
    ingress {
      description = "ping"
      from_port = 8
@@ -75,7 +59,6 @@ resource "aws_security_group" "default-sg" {
      protocol = "icmp"
      cidr_blocks = ["10.0.0.0/16"]
    }
-
    egress {
      from_port   = 0
      to_port     = 0
@@ -84,6 +67,6 @@ resource "aws_security_group" "default-sg" {
    }
 
    tags = {
-     Name = "Default SG"
+     Name = "Stack-SegurityGroup"
    }
  }
