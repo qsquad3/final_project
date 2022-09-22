@@ -87,12 +87,15 @@ sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.
 
 # Deploy kubernetes files
 sudo kubectl create namespace app
+sudo kubectl create namespace app-dev
 sudo mkdir /deploys
 cd /deploys
 sudo git clone https://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@github.com/qsquad3/docker-files.git
 cd docker-files/kubernetes
 sudo kubectl apply -f app-service.yaml
 sudo kubectl apply -f app-deploy.yaml
+sudo kubectl apply -f app-service-dev.yaml
+sudo kubectl apply -f app-deploy-dev.yaml
 #sudo kubectl apply -f app-replicaset.yaml
 
 # Install DataDog
