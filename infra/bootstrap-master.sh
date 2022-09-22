@@ -93,17 +93,17 @@ sudo git clone https://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@github.com/qsqua
 cd docker-files/kubernetes
 sudo kubectl apply -f app-service.yaml
 sudo kubectl apply -f app-deploy.yaml
-sudo kubectl apply -f app-replicaset.yaml
+#sudo kubectl apply -f app-replicaset.yaml
 
 # Install DataDog
 # Ubuntu
-DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d02690e83d0162e671b9ff6436597738 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+##DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d02690e83d0162e671b9ff6436597738 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 # k8s
-sudo helm repo add datadog https://helm.datadoghq.com
-sudo helm install my-datadog-operator datadog/datadog-operator
-sudo kubectl create secret generic datadog-secret --from-literal api-key=d02690e83d0162e671b9ff6436597738 --from-literal app-key=d02690e83d0162e671b9ff6436597738
-cd /deploys/docker-files/kubernetes
-sudo kubectl apply -f datadog-values.yaml
+##sudo helm repo add datadog https://helm.datadoghq.com
+##sudo helm repo update
+##cd /deploys/docker-files/kubernetes
+##sudo helm install datadog-k8s -f datadog-values.yaml  datadog/datadog --set targetSystem=linux --set clusterAgent.replicas=2 --set clusterAgent.createPodDisruptionBudget=true
+
 # somente pra saber se chegou até o final
 echo "ok" > /tmp/ok.txt
 
