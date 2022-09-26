@@ -70,6 +70,7 @@ sudo cp /docker/docker-files/tns/prometheus.yaml .
 cd dashboards
 sudo cp /docker/docker-files/tns/app-dash.json .
 sudo cp /docker/docker-files/tns/app-dash2.json .
+sudo cp /docker/docker-files/tns/pgsql-dash.json .
 sudo sed -i 's/The New Stack (TNS) Demo Application RED dashboard/TNS - Dash/g' demo-red.json
 cd ..
 sudo docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
