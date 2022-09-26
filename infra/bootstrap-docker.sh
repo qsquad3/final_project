@@ -83,6 +83,8 @@ sudo docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:
 # PGSQL
 cd /etc/datadog-agent
 sudo chmod 777 -R datadog.yaml;sudo echo "logs_enabled: true" >> datadog.yaml
+cd /etc/datadog-agent/conf.d/postgres.d/
+sudo cp /docker/docker-files/pgsql/datadog-conf-pgsql.yaml conf.yaml
 sudo service datadog-agent restart
 
 # Sinalizando que chegou ao final do bootstrap
