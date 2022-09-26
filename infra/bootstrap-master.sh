@@ -95,6 +95,8 @@ sudo helm repo add datadog https://helm.datadoghq.com
 sudo helm repo update
 cd /deploys/docker-files/kubernetes
 sudo helm install datadog-k8s -f datadog-values.yaml  datadog/datadog --set targetSystem=linux --set clusterAgent.replicas=2 --set clusterAgent.createPodDisruptionBudget=true
+cd /etc/datadog-agent
+sudo chmod 777 datadog.yaml; echo "kubelet_tls_verify: false" >> datadog.yaml; sudo service datadog-agent restart
 
 # Deploy kubernetes files
 sudo kubectl create namespace app
