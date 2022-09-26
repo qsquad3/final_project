@@ -37,7 +37,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 # IMAGES and Containers
 sudo mkdir /docker
 cd /docker
-sudo git clone https://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@github.com/qsquad3/docker-files.git
+sudo git clone https://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@github.com/qsquad3/docker-files.git
 
 # Expor o deamon do docker
 sudo mkdir -p /etc/systemd/system/docker.service.d/

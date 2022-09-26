@@ -116,7 +116,7 @@ sudo kubectl create namespace app
 sudo kubectl label namespace app istio-injection=enabled
 sudo mkdir /deploys
 cd /deploys
-sudo git clone https://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@github.com/qsquad3/docker-files.git
+sudo git clone https://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@github.com/qsquad3/docker-files.git
 cd docker-files/kubernetes/blue-green
 sudo kubectl apply -f app-service-dev.yaml
 sudo kubectl apply -f app-service-prod.yaml

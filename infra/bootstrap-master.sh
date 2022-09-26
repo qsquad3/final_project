@@ -85,6 +85,9 @@ sudo helm install calico projectcalico/tigera-operator --version v3.24.1 --names
 sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
 
 # Install DataDog
+sudo mkdir /deploys
+cd /deploys
+sudo git clone https://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@github.com/qsquad3/docker-files.git
 # Ubuntu Agent
 DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d02690e83d0162e671b9ff6436597738 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 # Kubernetes Agent
@@ -96,10 +99,7 @@ sudo helm install datadog-k8s -f datadog-values.yaml  datadog/datadog --set targ
 # Deploy kubernetes files
 sudo kubectl create namespace app
 sudo kubectl create namespace app-dev
-sudo mkdir /deploys
-cd /deploys
-sudo git clone https://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@github.com/qsquad3/docker-files.git
-cd docker-files/kubernetes
+cd /deploys/docker-files/kubernetes
 sudo kubectl apply -f app-service.yaml
 sudo kubectl apply -f app-deploy.yaml
 sudo kubectl apply -f app-service-dev.yaml
